@@ -31,13 +31,13 @@ function Navigator(){
                     <MenuButton as={Link} className="navigator-link"> Vue demo <ChevronDownIcon /></MenuButton>
                     <MenuList>
                         <MenuItem>
-                            <Link href="#/vue/"></Link>
+                            <Link href="#/vue/">Home - Vue Demo</Link>
                         </MenuItem>
                         <MenuItem>
-                            <Link href="#/vue/about"></Link>
+                            <Link href="#/vue/about">About - Vue Demo</Link>
                         </MenuItem>
                         <MenuItem>
-                            <Link href="#/vue/other"></Link>
+                            <Link href="#/vue/other">Other - Vue Demo</Link>
                         </MenuItem>
                         <MenuItem>
                             <Link isExternal href="https://github.com/xzifan/mini-mf-vue3">Github Repo</Link>
