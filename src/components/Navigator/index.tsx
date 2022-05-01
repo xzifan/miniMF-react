@@ -30,9 +30,15 @@ function Navigator(){
                 <Menu>
                     <MenuButton as={Link} className="navigator-link"> Vue demo <ChevronDownIcon /></MenuButton>
                     <MenuList>
-                        <MenuItem onClick={()=>history.pushState('', '', '#/vue/')}>Home - Vue demo </MenuItem>
-                        <MenuItem onClick={()=>history.pushState('', '', '#/vue/about')}>About - Vue demo </MenuItem>
-                        <MenuItem onClick={()=>history.pushState('', '', '#/vue/other')}>Other - Vue demo </MenuItem>
+                        <MenuItem>
+                            <Link href="#/vue/"></Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link href="#/vue/about"></Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link href="#/vue/other"></Link>
+                        </MenuItem>
                         <MenuItem>
                             <Link isExternal href="https://github.com/xzifan/mini-mf-vue3">Github Repo</Link>
                             <ExternalLinkIcon mx={2}/>
