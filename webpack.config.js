@@ -52,5 +52,9 @@ module.exports = {
         port: 7001,
         open: true,
         compress: false
+    },
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
     }
 };
