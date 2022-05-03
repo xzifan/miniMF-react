@@ -6,11 +6,13 @@ module.exports = {
     // bundling mode
     mode: process.env.NODE_ENV,
     // entry files
-    entry: './src/index.tsx',
+    entry: { 
+        nav: './src/index.tsx',
+        md: './src/markdown/index.tsx'
+    },
     // output bundles (location)
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
     },
     // file resolutions
     resolve: {
