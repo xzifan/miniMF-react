@@ -1,0 +1,16 @@
+#markdown-container{
+    max-width: 960px;
+    padding: 32px 64px 64px;
+    margin: 0 auto;
+    
+    p, h1,h2,h3,h4,h5, span, div{
+        font-family: 'Red Hat Display', sans-serif;
+    }
+
+    code {
+        p, h1,h2,h3,h4,h5, span, div{
+            font-family: Consolas,monaco,monospace; 
+            
+        }
+    }
+}

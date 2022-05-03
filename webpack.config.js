@@ -43,7 +43,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html', // name of file that will be outputted to 'src' when built
             template: './index.html',// path to your html file relative to config
-            inject: true
+            inject: 'body'
         })
     ],
     devServer: {

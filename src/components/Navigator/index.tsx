@@ -46,7 +46,7 @@ function Navigator(){
                 </Menu>
             </HStack>
             <HStack gap={8}>
-                <InputGroup w={280}>
+                <InputGroup w={280} display={['none', 'none', 'none', 'block']}>
                     <InputLeftElement
                         pointerEvents='none'
                         children={<SearchIcon color='gray.300'/>}
