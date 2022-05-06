@@ -7,7 +7,7 @@ module.exports = {
     mode: process.env.NODE_ENV,
     // entry files
     entry: { 
-        nav: './src/index.tsx',
+        nav: './src/navigator/index.tsx',
         md: './src/markdown/index.tsx'
     },
     // output bundles (location)
@@ -21,7 +21,18 @@ module.exports = {
     // loaders
     module: {
         rules: [
-            { test: /\.(js|jsx)$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { 
+                test: /\.(js|jsx)$/, 
+                loader: 'babel-loader', 
+                exclude: /node_modules/, 
+                options: {
+                    plugins: [
+                        ['babel-plugin-import', {
+                            libraryName: '@alifd/next',
+                            style: true
+                        }]
+                    ]},
+            },
             { test: /\.(ts|tsx)$/, loader: 'ts-loader', exclude: /node_modules/ },
             {
                 test: /\.scss|css$/,
@@ -39,7 +50,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new HotModuleReplacementPlugin({}),
         new HtmlWebpackPlugin({
             filename: 'index.html', // name of file that will be outputted to 'src' when built
             template: './index.html',// path to your html file relative to config
@@ -53,7 +63,8 @@ module.exports = {
         },
         port: 7001,
         open: true,
-        compress: false
+        compress: false,
+        hot: true
     },
     externals: {
         "react": "React",

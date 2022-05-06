@@ -1,5 +1,5 @@
 // @ts-nocheck
-import MDEditor from "@uiw/react-md-editor"
+import MarkdownPreview from '@uiw/react-markdown-preview';
 import {fetchContent} from '../utils/index'
 const defaultUrl = 'https://raw.githubusercontent.com/xzifan/mini-micro-frontend/main/public/index.md'
 function Markdown(){
@@ -20,7 +20,7 @@ function Markdown(){
         }
     }, [location.hash])
     return <>
-        <MDEditor.Markdown source={content} />
+        <MarkdownPreview source={content} />
     </>
 }
 
