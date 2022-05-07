@@ -9,7 +9,9 @@ const { SubNav , Item} = Nav
 const { H1 } = Typography
 declare global {
     interface Window {
-        renderNav: (rootElement: HTMLElement) => void
+        renderer: {
+            [name: string]: (rootElement: HTMLElement) => void 
+        }
     }
 }
 //@ts-ignore
@@ -20,16 +22,19 @@ declare global {
 //     <Navigator />
 //   </ConfigProvider>
 // );
-
-window.renderNav = function (rootElement: HTMLElement){
+if (typeof window.renderer === 'undefined') {
+    window.renderer = {}
+}
+window.renderer['nav'] = function (rootElement: HTMLElement | undefined){
     try {
+        const root = rootElement || document.getElementById('nav')
         //@ts-ignore
-        ReactDOM.createRoot(rootElement).render(
+        ReactDOM.createRoot(root).render(
             <ConfigProvider errorBoundary={{fallbackUI: (error) => <></>, afterCatch: () => {}}}>
             <Navigator />
         </ConfigProvider>)
     } catch (error) {
-        
+        console.error(error)
     }
 }
 
