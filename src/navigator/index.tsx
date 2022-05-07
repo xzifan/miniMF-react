@@ -1,87 +1,56 @@
 
 import './index.scss'
 import '@alifd/next/dist/next.css';
-import { ConfigProvider, Menu, Typography } from '@alifd/next';
+import { ConfigProvider, Menu, Nav, Typography } from '@alifd/next';
 import VueIcon from '../icons/vue'
 import ReactIcon from '../icons/react';
-const { SubMenu , Item} = Menu
+import { useCurrentWidth } from '../utils';
+const { SubNav , Item} = Nav
 const { H1 } = Typography
+declare global {
+    interface Window {
+        renderNav: (rootElement: HTMLElement) => void
+    }
+}
 //@ts-ignore
-const root = ReactDOM.createRoot(document.getElementById('nav')!);
-root.render(
-  <ConfigProvider errorBoundary={{fallbackUI: (error) => <></>, afterCatch: () => {}}}>
-    <Navigator />
-  </ConfigProvider>
-);
+//  no longer render by itself but by the root application
+// const root = ReactDOM.createRoot(document.getElementById('nav')!);
+// root.render(
+//   <ConfigProvider errorBoundary={{fallbackUI: (error) => <></>, afterCatch: () => {}}}>
+//     <Navigator />
+//   </ConfigProvider>
+// );
+
+window.renderNav = function (rootElement: HTMLElement){
+    try {
+        //@ts-ignore
+        ReactDOM.createRoot(rootElement).render(
+            <ConfigProvider errorBoundary={{fallbackUI: (error) => <></>, afterCatch: () => {}}}>
+            <Navigator />
+        </ConfigProvider>)
+    } catch (error) {
+        
+    }
+}
 
 const header = <H1>Mini Micro Frontend</H1>
 
 function Navigator(){
+    const width = useCurrentWidth()
     return <>
-        <Menu
+        <Nav
             header={header}
-            className='navigator'
+            className={`navigator ${width<1080? 'mobile': ''}`}
             defaultOpenAll
             defaultSelectedKeys="home"
+            direction={width<1080?'hoz': 'ver'}
         >
             <Item key={'home'}><a href='#/'>Home <ReactIcon/></a></Item>
-            <SubMenu label='Main features'>
+            <SubNav label={<>Main features <VueIcon/></>}>
                 <Item><a href='#/vue/'>Routing <VueIcon/></a> </Item>
                 <Item><a href='#/vue/about'>Spliting MFs <VueIcon/></a></Item>
                 <Item><a href='#/vue/other'>Routing<VueIcon/></a></Item>
-            </SubMenu>
-        </Menu>
-        {/* <VStack className="navigator" rounded={'3xl'} justifyContent="space-between"> */}
-            {/* <HStack spacing={8}>
-                <Text className="navigator-title" fontSize={'3xl'} marginBottom={'8px'}>
-                    Mini Micro-Frontend
-                </Text>
-                <Link href="#/" className="navigator-link"> Home </Link>
-                <Menu>
-                    <MenuButton as={Link} className="navigator-link"> Vue demo <ChevronDownIcon /></MenuButton>
-                    <MenuList>
-                        <MenuItem >
-                            <Link href="#/vue/" display={'flex'} alignItems={'center'}>Home &nbsp;<VueIcon/></Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link href="#/vue/about" display={'flex'} alignItems={'center'}>About &nbsp;<VueIcon/></Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link href="#/vue/other" display={'flex'} alignItems={'center'}>Other &nbsp;<VueIcon/></Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link isExternal href="https://github.com/xzifan/mini-mf-vue3">Github Repo</Link>
-                            <ExternalLinkIcon mx={2}/>
-                        </MenuItem>
-                    </MenuList>
-                </Menu>
-            </HStack> */}
-            {/* <HStack gap={8}> */}
-                {/* <InputGroup w={280} display={['none', 'none', 'none', 'block']}>
-                    <InputLeftElement
-                        pointerEvents='none'
-                        children={<SearchIcon color='gray.300'/>}
-                    />
-                    <Input type='search' placeholder='Search ' rounded={'xl'}/>
-                </InputGroup> */}
-                
-                {/* <Popover placement={'bottom-end'}>
-                    <PopoverTrigger>
-                        <a><Avatar cursor={'pointer'} src="https://avatars.githubusercontent.com/u/34232484?s=400&u=472ccaca422cc6ee8cf3a46b7af5d05dab2bbf3c&v=4"></Avatar></a>
-                    </PopoverTrigger>
-                    <PopoverContent padding={'4'}>
-                        <VStack alignItems={'flex-start'}>
-                            <Text fontWeight={'black'}>Zifan Xiao</Text>
-                            <Text>xiao@zifan.dev</Text>
-                            <HStack>
-                                <Link href="https://github.com/xzifan/mini-micro-frontend" isExternal>
-                                    <GithubIcon cursor={'pointer'} />
-                                </Link>
-                            </HStack>
-                        </VStack>
-                    </PopoverContent>
-                </Popover> */}
-            {/* </HStack>
-        </VStack> */}
+            </SubNav>
+        </Nav>
     </>
 }

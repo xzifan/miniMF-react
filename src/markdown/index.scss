@@ -1,10 +1,11 @@
 #markdown-container{
     max-width: 960px;
     padding: 64px;
-    // margin: 0 auto;
+    transform: translateX(100px);
     box-sizing: border-box;
     width: calc(100vw - 240px);
     display: inline-block;
+    margin: 0 auto;
 
     p, h1,h2,h3,h4,h5, span, div{
         font-family: 'Red Hat Display', sans-serif;
@@ -14,5 +15,13 @@
         p, h1,h2,h3,h4,h5, span, div{
             font-family: Consolas,monaco,monospace; 
         }
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    #markdown-container{
+        padding: 32px;
+        width: 90%;
+        transform: none;
     }
 }
