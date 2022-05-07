@@ -8,12 +8,12 @@ body {
 
 #nav {
     position: relative !important;
-    // align-self: center;
+    min-height: unset;
     display: inline-block;
-    // width: 280px;
     top: 0;
     left: 0;
     margin: 0;
+    padding: 0;
     .navigator {
         padding: 16px 8px;
         border-radius: 8px;
